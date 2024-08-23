@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 5px;
+            background-image: url('static/backgroundimg.jpg');
+            background-size: cover;
+        }
+        .container {
+            width: 40%;
+            margin: 70px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .block {
+            padding: 5px;
+            margin-bottom: 5px;
+            background-color: #f0f0f0;
+            margin-left: left;
+        }
+        .block label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .block input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #e0ffe0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Iris Prediction</h1>
+        <form action="{{ url_for('predict')}}" method="post">
+            <div class="block">
+                <label for="sepal-length">Sepal Length:</label>
+                <input type="number" step="0.1" name="SepalLengthCm" id="sepal-length" required>
+            </div>
+            <div class="block">
+                <label for="sepal-width">Sepal Width:</label>
+                <input type="number" step="0.1" name="SepalWidthCm" id="sepal-width" required>
+            </div>
+            <div class="block">
+                <label for="petal-length">Petal Length:</label>
+                <input type="number" step="0.1" name="PetalLengthCm" id="petal-length" required>
+            </div>
+            <div class="block">
+                <label for="petal-width">Petal Width:</label>
+                <input type="number" step="0.1" name="PetalWidthCm" id="petal-width" required>
+            </div>
+            <input type="submit" value="Predict" class="submit-btn">
+        </form>
+        
+        <!-- Display Prediction Result Here -->
+        {% if prediction_text %}
+        <div class="result">
+            <h3>{{ prediction_text }}</h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
